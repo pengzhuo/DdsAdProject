@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+def getTime() {
+    return new Date().format("yyyyMMdd-HHmmss", TimeZone.getDefault());
+}
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'dds_key_alias'
+            keyPassword 'dds_key_alias_ad'
+            storeFile file('/Users/Pengz/Documents/GitHub/DdsAdProject/dds.keystore')
+            storePassword 'DDS_AD_2017'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    //打包后应用名称
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            def fileName
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                if (variant.buildType.name.equals('release')) {
+                    fileName = "dds-release-${variant.productFlavors[0].name}-${defaultConfig.versionName}-${getTime()}.apk"
+                } else if (variant.buildType.name.equals('debug')) {
+                    fileName = "dds-debug-${variant.productFlavors[0].name}-${defaultConfig.versionName}-${getTime()}.apk"
+                }
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+    productFlavors {
+        c501a {
+            applicationId "com.cooeeui.zenlauncher"
+            manifestPlaceholders = [
+                    UMENG_APPKEY       : properties.getProperty("app_key_umeng_c501a"),
+                    UMENG_CHANNEL      : properties.getProperty("app_channel_umeng_c501a"),
+                    APP_VERSION        : properties.getProperty("version_c501a"),
+                    APP_CHANNEL_ID     : properties.getProperty("channel_c501a"),
+                    APP_COOPERATION_ID : properties.getProperty("work_c501a"),
+                    APP_PRODUCT_ID     : properties.getProperty("product_c501a"),
+                    SITE_FACEBOOK      : properties.getProperty("fb_site_c501a"),
+                    SITE_ADMOB         : properties.getProperty("admob_site_c501a"),
+                    SITE_DDS           : properties.getProperty("dds_site_c501a"),
+                    SITE_INTERVAL      : properties.getProperty("site_interval_c501a"),
+                    GLOABL_INTERVAL    : properties.getProperty("gloabl_interval_c501a"),
+                    NETWORK_TIME       : properties.getProperty("network_time_c501a"),
+                    FB_APPID           : properties.getProperty("fb_appid_c501a"),
+            ]
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(name: 'AudienceNetwork', ext: 'aar')
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.jaredrummler:android-processes:1.0.9'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.google.android.gms:play-services-ads:10.2.0'
+    //noinspection GradleCompatible
+    compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
+}
