@@ -49,14 +49,15 @@ public class AdApplication extends Application {
 
         //初始化
         init();
+
+        //初始化数据统计接口
+        AnalyticsUtils.getInstance(getApplicationContext());
     }
 
     private void init(){
-        //初始化数据统计接口
-        AnalyticsUtils.getInstance(getApplicationContext());
-
         //初始化版本信息
         ConstDefine.init();
+        ConfigDefine.APP_KEY_FLURRY      = FuncUtils.getManifestApplicationMetaData(this, "FLURRY_APPKEY");
         ConfigDefine.APP_KEY_UMENG       = FuncUtils.getManifestApplicationMetaData(this, "UMENG_APPKEY");
         ConfigDefine.APP_CHANNEL_UMENG   = FuncUtils.getManifestApplicationMetaData(this, "UMENG_CHANNEL");
         ConfigDefine.APP_VERSION 		 = FuncUtils.getManifestApplicationMetaData(this, "APP_VERSION");

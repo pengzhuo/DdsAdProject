@@ -90,6 +90,11 @@ public class ConfigDefine {
     public static String APP_CHANNEL_UMENG = "";
 
     /**
+     * Flurry统计AppKey
+     */
+    public static String APP_KEY_FLURRY = "";
+
+    /**
      * 全局时间间隔
      */
     public static long APP_GLOABL_INTERVAL = 0;

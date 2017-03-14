@@ -28,10 +28,10 @@ public class AdReceive extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        MLog.i(TAG, "AdReceive action " + action);
         if (TextUtils.isEmpty(action)) {
             return;
         }
+        MLog.i(TAG, "AdReceive action " + action);
         if (action.equalsIgnoreCase(Intent.ACTION_USER_PRESENT)) {
             //用户解锁进入桌面
             handleLockScreen(context);

@@ -19,6 +19,7 @@ public class AnalyticsUtils {
     private AnalyticsUtils(Context context){
         mContext = context;
         UmengUtils.init(context);
+        FlurryUtils.init(context);
     }
 
     public static AnalyticsUtils getInstance(Context context){

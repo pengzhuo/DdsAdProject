@@ -17,6 +17,7 @@ import com.duduws.ad.log.MLog;
 import com.duduws.ad.model.AdItemList;
 import com.duduws.ad.model.PackageElement;
 import com.duduws.ad.utils.FuncUtils;
+import com.flurry.android.FlurryAgent;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -87,6 +88,18 @@ public class BaseActivity extends Activity implements OnItemClickListener {
             FuncUtils.runApps(BaseActivity.this, mPkgList.get(position).getmPackageName());
         }
         finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
     }
 
     @Override

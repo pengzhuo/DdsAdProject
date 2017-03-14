@@ -87,6 +87,7 @@ public class SelfActivity extends Activity {
             public void run() {
                 NetManager.getInstance(SelfActivity.this).getAdInfoFromServer(1);
                 DspHelper.updateRequestData(SelfActivity.this, ConstDefine.DSP_CHANNEL_DDS+offset);
+                AnalyticsUtils.onEvent(SelfActivity.this, ConstDefine.DSP_CHANNEL_DDS, triggerType, ConstDefine.AD_TYPE_SDK_SPOT, ConstDefine.AD_RESULT_REQUEST);
             }
         }).start();
 
