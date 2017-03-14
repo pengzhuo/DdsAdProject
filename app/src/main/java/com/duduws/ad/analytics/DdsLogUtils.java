@@ -12,6 +12,9 @@ import com.duduws.ad.utils.FuncUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * 自定义日志打点
  * @author Pengz
@@ -24,6 +27,7 @@ public class DdsLogUtils {
     private static DdsLogUtils instance = null;
     private JSONArray jsonArray = null;
     private Context mContext = null;
+    private static HashMap<String, ArrayList<LogModel>> map = null;
 
     private DdsLogUtils(Context context){
         String localStr = AdsPreferences.getInstance(context).getString(MacroDefine.MACRO_LOG_FLAG, "");
