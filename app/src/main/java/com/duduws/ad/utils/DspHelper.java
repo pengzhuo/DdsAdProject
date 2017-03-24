@@ -368,6 +368,7 @@ public class DspHelper {
                 break;
             }
         }
+        MLog.w(TAG, "getDspSpotChannelByTrigger return channel " + channel);
         return channel;
     }
 

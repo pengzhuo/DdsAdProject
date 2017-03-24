@@ -15,8 +15,34 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-optimizationpasses 5
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+-dontwarn
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-keepattributes InnerClasses,LineNumberTable
 
--keep class com.duduws.ad.main.UMGameAgent{
-    <fields>;
-    <methods>;
+#友盟
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+-keep public class com.cooeeui.zenlauncher.R$*{
+    public static final int *;
+}
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**
+
+# Required to preserve the Flurry SDK
+-keep class com.flurry.** { *; }
+-dontwarn com.flurry.**
+-keepattributes *Annotation*,EnclosingMethod,Signature
+
+-keep class com.duduws.ad.main.DdsManager{
+    public <methods>;
 }

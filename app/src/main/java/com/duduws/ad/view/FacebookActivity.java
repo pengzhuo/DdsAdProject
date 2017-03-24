@@ -20,7 +20,7 @@ import com.facebook.ads.InterstitialAdListener;
 /**
  * Created by Pengz on 16/7/29.
  */
-public class FacebookActivity extends BaseActivity implements InterstitialAdListener{
+public class FacebookActivity extends BaseActivity implements InterstitialAdListener {
     private static final String TAG = "FacebookActivity";
     private InterstitialAd interstitialAd;
     private int triggerType = -1;

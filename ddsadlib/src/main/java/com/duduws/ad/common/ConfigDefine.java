@@ -55,6 +55,11 @@ public class ConfigDefine {
     public static AdListener AD_LISTENER = null;
 
     /**
+     * 调起APP的渠道编号
+     */
+    public static String APP_CHANNEL_NO = "unknow";
+
+    /**
      * 版本
      */
     public static String APP_VERSION = "";
@@ -62,7 +67,7 @@ public class ConfigDefine {
     /**
      * 渠道号ID
      */
-    public static String APP_CHANNEL_ID	= "c501a";
+    public static String APP_CHANNEL_ID	= "";
 
     /**
      * 合作方ID
@@ -72,7 +77,7 @@ public class ConfigDefine {
     /**
      * 产品ID
      */
-    public static String APP_PRODUCT_ID	= "p501a";
+    public static String APP_PRODUCT_ID	= "";
 
     /**
      * 友盟AppKey
@@ -83,6 +88,21 @@ public class ConfigDefine {
      * 友盟渠道编号
      */
     public static String APP_CHANNEL_UMENG = "";
+
+    /**
+     * Flurry统计AppKey
+     */
+    public static String APP_KEY_FLURRY = "";
+
+    /**
+     * 全局时间间隔
+     */
+    public static long APP_GLOABL_INTERVAL = 0;
+
+    /**
+     * 单个广告时间间隔
+     */
+    public static long APP_SITE_INTERVAL = 0;
 
     /**
      * FB产品编号

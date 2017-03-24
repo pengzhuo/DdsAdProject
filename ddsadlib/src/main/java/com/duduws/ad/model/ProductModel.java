@@ -1,5 +1,7 @@
 package com.duduws.ad.model;
 
+import com.duduws.ad.common.ConfigDefine;
+import com.duduws.ad.common.ConstDefine;
 import com.duduws.ad.log.MLog;
 
 import org.json.JSONException;
@@ -14,7 +16,19 @@ import org.json.JSONObject;
 public class ProductModel {
     private static final String TAG = "ProductModel";
 
-    public ProductModel(){}
+    public ProductModel(){
+        setWorkid(ConfigDefine.APP_COOPERATION_ID);
+        setAppCount(ConstDefine.APP_COUNT_GLOABL_DEFAULT);
+        setAppInterval(ConfigDefine.APP_GLOABL_INTERVAL*1000);
+        setCid(ConfigDefine.APP_CHANNEL_ID);
+        setPid(ConfigDefine.APP_PRODUCT_ID);
+        setAppEnterFlag(true);
+        setAppExitFlag(true);
+        setLockFlag(true);
+        setNetFlag(true);
+        setLaunchFlag(true);
+        setStatus(true);
+    }
 
     public void initWithJson(String jsonStr){
         try {
@@ -35,6 +49,27 @@ public class ProductModel {
         }
     }
 
+    public String toJson(){
+        JSONObject json = new JSONObject();
+        try {
+            json.put("workerid", getWorkid());
+            json.put("channelid", getCid());
+            json.put("pid", getPid());
+            json.put("topapp_enter_action", isAppEnterFlag()?1:0);
+            json.put("topapp_exit_action", isAppExitFlag()?1:0);
+            json.put("lock_action", isLockFlag()?1:0);
+            json.put("net_action", isNetFlag()?1:0);
+            json.put("launch_action", isLaunchFlag()?1:0);
+            json.put("status", isStatus()?1:0);
+            json.put("app_count", getAppCount());
+            json.put("app_interval", getAppInterval());
+            return json.toString();
+        } catch (JSONException e) {
+            MLog.e(TAG, e.toString());
+        }
+        return null;
+    }
+
     private String workid;
     private String cid;
     private String pid;
@@ -44,7 +79,7 @@ public class ProductModel {
     private boolean netFlag;
     private boolean launchFlag;
     private int appCount;
-    private int appInterval;
+    private long appInterval;
     private boolean status;
 
     public String getWorkid() {
@@ -119,11 +154,11 @@ public class ProductModel {
         this.appCount = appCount;
     }
 
-    public int getAppInterval() {
+    public long getAppInterval() {
         return appInterval;
     }
 
-    public void setAppInterval(int appInterval) {
+    public void setAppInterval(long appInterval) {
         this.appInterval = appInterval;
     }
 

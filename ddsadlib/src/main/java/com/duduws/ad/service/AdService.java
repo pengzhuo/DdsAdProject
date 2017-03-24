@@ -9,6 +9,8 @@ import com.duduws.ad.common.ConstDefine;
 import com.duduws.ad.log.MLog;
 import com.duduws.ad.net.NetManager;
 import com.duduws.ad.receive.AdReceive;
+import com.duduws.ad.utils.DspHelper;
+import com.duduws.ad.utils.FuncUtils;
 
 /**
  * Created by Pengz on 16/7/20.
@@ -20,6 +22,8 @@ public class AdService extends Service {
     public void onCreate() {
         super.onCreate();
 
+        FuncUtils.startDaemon(getApplicationContext(), ConstDefine.ACTION_MAIN_SERVICE);
+
         AdReceive adReceive = new AdReceive();
         //监听时钟信息
         IntentFilter intentFilter = new IntentFilter();
@@ -30,13 +34,17 @@ public class AdService extends Service {
         registerReceiver(adReceive, intentFilter);
 
         //连接服务器
-//        NetManager.getInstance(getApplicationContext()).startRequest();
-//        NetManager.getInstance(getApplicationContext()).startHeart();
+        long curTime = System.currentTimeMillis();
+        long nextTime = DspHelper.getNextNetConTime(this);
+        MLog.i(TAG, "AdService net con " + curTime + " , " + nextTime);
+        if (nextTime == 0 || curTime >= nextTime){
+            NetManager.getInstance(getApplicationContext()).startRequest();
+            NetManager.getInstance(getApplicationContext()).startHeart();
+            DspHelper.setNextNetConTime(this, System.currentTimeMillis() + ConstDefine.NET_CONN_TIME_DEFAULT*1000);
+        }
 
         //启动APP打开和关闭的监听
 //        AppTaskTimer.getInstance(getApplicationContext()).startAppCheck();
-
-        MLog.e(TAG, "service is started!");
 
     }
 

@@ -11,25 +11,32 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.WindowManager;
 
 import com.duduws.ad.common.MacroDefine;
 import com.duduws.ad.log.MLog;
 import com.duduws.ad.model.PackageElement;
+import com.jaredrummler.android.processes.AndroidProcesses;
+import com.jaredrummler.android.processes.models.AndroidAppProcess;
 
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -173,6 +180,32 @@ public class FuncUtils {
             MLog.e(TAG, e.toString());
         }
         return rts;
+    }
+
+    /**
+     * 获取当前使用过的APP信息
+     * @param context
+     * @return
+     */
+    public static String getRecentAppString(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE_NAME, 0);
+        String recentApp = prefs.getString(PREFS_KEY_RECENT, "");
+        if (TextUtils.isEmpty(recentApp)) {
+            recentApp = updateRecentApp(context);
+        }
+        return recentApp;
+    }
+
+    /**
+     * 更新当前使用过的APP信息
+     * @param context
+     * @param recentApp
+     */
+    public static void setRecentAppString(Context context, String recentApp) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE_NAME, 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(PREFS_KEY_RECENT, recentApp);
+        editor.commit();
     }
 
     /**
@@ -374,37 +407,36 @@ public class FuncUtils {
      * @return
      */
     public static String appInFront(Context context){
-//        String str = "";
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            Iterator localIterator = AndroidProcesses.getRunningForegroundApps(context).iterator();
-//
-//            while (localIterator.hasNext())
-//            {
-//                AndroidAppProcess localAndroidAppProcess = (AndroidAppProcess)localIterator.next();
-//                str = localAndroidAppProcess.getPackageName();
-//                if (TextUtils.isEmpty(str))
-//                {
-//                    if (localAndroidAppProcess.foreground) {
-//                        return str;
-//                    }
-//                }
-//            }
-//            return str;
-//        }else{
-//            ActivityManager mActivityManager  = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-//            List<ActivityManager.RunningTaskInfo> rtList = mActivityManager.getRunningTasks(1);
-//            if( rtList == null ||
-//                    rtList.size() == 0 ){
-//                return "" ;
-//            }
-//            ActivityManager.RunningTaskInfo taskInfo = rtList.get(0);
-//            if (null != taskInfo) {
-//                String packageName = taskInfo.topActivity.getPackageName();
-//                return packageName;
-//            }
-//            return "";
-//        }
-        return "";
+        String str = "";
+        if (Build.VERSION.SDK_INT >= 21) {
+            Iterator localIterator = AndroidProcesses.getRunningForegroundApps(context).iterator();
+
+            while (localIterator.hasNext())
+            {
+                AndroidAppProcess localAndroidAppProcess = (AndroidAppProcess)localIterator.next();
+                str = localAndroidAppProcess.getPackageName();
+                if (TextUtils.isEmpty(str))
+                {
+                    if (localAndroidAppProcess.foreground) {
+                        return str;
+                    }
+                }
+            }
+            return str;
+        }else{
+            ActivityManager mActivityManager  = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningTaskInfo> rtList = mActivityManager.getRunningTasks(1);
+            if( rtList == null ||
+                    rtList.size() == 0 ){
+                return "" ;
+            }
+            ActivityManager.RunningTaskInfo taskInfo = rtList.get(0);
+            if (null != taskInfo) {
+                String packageName = taskInfo.topActivity.getPackageName();
+                return packageName;
+            }
+            return "";
+        }
     }
 
     /**
@@ -621,5 +653,44 @@ public class FuncUtils {
         }
 
         return bitmap;
+    }
+
+    /**
+     * 获取CPU信息
+     * @return
+     */
+    public static String[] getCpuInfo() {
+        String str1 = "/proc/cpuinfo";
+        String str2 = "";
+        String[] cpuInfo={"",""};
+        String[] arrayOfString;
+        try {
+            FileReader fr = new FileReader(str1);
+            BufferedReader localBufferedReader = new BufferedReader(fr, 8192);
+            str2 = localBufferedReader.readLine();
+            arrayOfString = str2.split("\\s+");
+            for (int i = 2; i < arrayOfString.length; i++) {
+                cpuInfo[0] = cpuInfo[0] + arrayOfString[i] + " ";
+            }
+            str2 = localBufferedReader.readLine();
+            arrayOfString = str2.split("\\s+");
+            cpuInfo[1] += arrayOfString[2];
+            localBufferedReader.close();
+        } catch (IOException e) {
+            MLog.e(TAG, e.getMessage());
+        }
+        return cpuInfo;
+    }
+
+    /**
+     * 获取设备分辨率
+     * @param context
+     * @return
+     */
+    public static String getDeviceResolution(Context context){
+        Point point = new Point();
+        WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getRealSize(point);
+        return point.x + "*" + point.y;
     }
 }

@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,12 +16,6 @@ import com.duduws.ad.R;
 import com.duduws.ad.common.ConfigDefine;
 import com.duduws.ad.utils.DspHelper;
 import com.duduws.ad.utils.FuncUtils;
-
-/**
- * @author Pengz
- * @mail pch987.net@163.com
- * @time 2017/2/13 15:50
- */
 
 public class ShowDDSActivity extends Activity {
     private static final String TAG = "ShowDDSActivity";
@@ -37,7 +30,6 @@ public class ShowDDSActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         if (getIntent() == null){
             //重置广告展示标志
             DspHelper.setCurrentAdsShowFlag(this, false);
@@ -56,7 +48,7 @@ public class ShowDDSActivity extends Activity {
         type = intent.getIntExtra("type", 0);
 
         //设置布局
-        setContentView(R.layout.snplay_pop);
+        setContentView(R.layout.ad_unit_self);
         //罗列控件
         RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.rlayout_bg);
         ImageView img_body = (ImageView)findViewById(R.id.img_body);
@@ -73,13 +65,13 @@ public class ShowDDSActivity extends Activity {
         tv_desc.setText(desc);
         if (type == 1){
             //跳转GP
-            button.setText("下载");
+            button.setText(getString(R.string.ad_type_1));
         } else if (type == 2) {
             //直接下载
-            button.setText("下载");
+            button.setText(getString(R.string.ad_type_1));
         } else {
             //跳网页
-            button.setText("查看详情");
+            button.setText(getString(R.string.ad_type_2));
         }
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -124,5 +116,12 @@ public class ShowDDSActivity extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //重置广告展示标志
+        DspHelper.setCurrentAdsShowFlag(this, false);
     }
 }

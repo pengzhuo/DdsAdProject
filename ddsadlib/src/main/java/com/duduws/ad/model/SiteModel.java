@@ -1,5 +1,7 @@
 package com.duduws.ad.model;
 
+import com.duduws.ad.common.ConfigDefine;
+import com.duduws.ad.common.ConstDefine;
 import com.duduws.ad.log.MLog;
 
 import org.json.JSONException;
@@ -14,7 +16,22 @@ import org.json.JSONObject;
 public class SiteModel {
     private static final String TAG = "SiteModel";
 
-    public SiteModel(){}
+    public SiteModel(){
+        setAppCount(ConstDefine.APP_COUNT_SITE_DEFAULT);
+        setAppInterval(ConfigDefine.APP_SITE_INTERVAL*1000);
+        setCid(ConfigDefine.APP_CHANNEL_ID);
+        setWorkId(ConfigDefine.APP_COOPERATION_ID);
+        setPid(ConfigDefine.APP_PRODUCT_ID);
+        setAppEnterFlag(true);
+        setAppExitFlag(true);
+        setLockFlag(true);
+        setNetFlag(true);
+        setTriesNum(0);
+        setResetDayNum(0);
+        setDelayTime(0);
+        setOrder(0);
+        setStatus(true);
+    }
 
     public void initWithJson(String json){
         try {

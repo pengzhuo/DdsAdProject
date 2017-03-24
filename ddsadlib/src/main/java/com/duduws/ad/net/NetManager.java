@@ -3,6 +3,7 @@ package com.duduws.ad.net;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.duduws.ad.analytics.DdsLogUtils;
 import com.duduws.ad.common.ConfigDefine;
 import com.duduws.ad.common.ConstDefine;
 import com.duduws.ad.common.MacroDefine;
@@ -137,17 +138,23 @@ public class NetManager {
                 if (!AdsPreferences.getInstance(context).getBoolean(MacroDefine.MACRO_AD_MASK_FLAG, false)){
                     AdsPreferences.getInstance(context).setBoolean(MacroDefine.MACRO_AD_MASK_FLAG, false);
                 }
-                //设置下次请求服务器的时间
-                long time = AdsPreferences.getInstance(context).getLong(MacroDefine.MACRO_NEXT_CONN_SERVER_TIME, 0);
-                AdsPreferences.getInstance(context).setLong(MacroDefine.MACRO_NEXT_CONN_SERVER_TIME, System.currentTimeMillis()+time);
+                //设置下次联网时间
+                DspHelper.setNextNetConTime(context, System.currentTimeMillis() + ConstDefine.NET_CONN_TIME_DEFAULT*1000);
+                //设置本地配置信息标志
+                AdsPreferences.getInstance(context).setString(MacroDefine.MACRO_LOCAL_CONFIG_FLAG, "success");
+                //清除本地缓存
+                DspHelper.resetLocalConfig(context);
                 //解析全局控制参数
                 if (!jsonObject.isNull("product")){
                     JSONObject productObj = jsonObject.optJSONObject("product");
                     ProductModel productModel = new ProductModel();
                     productModel.initWithJson(productObj.toString());
                     ConfigDefine.productInfo = productModel;
+                    DspHelper.setProductInfo(context, ConfigDefine.productInfo);
                 }
                 //解析单个SITE控制参数
+                ConfigDefine.DDS_ARR.clear();
+                ConfigDefine.DDS_AD_MAP.clear();
                 if (!jsonObject.isNull("site")){
                     ArrayList<SiteModel> lockList = new ArrayList<>();
                     ArrayList<SiteModel> netList = new ArrayList<>();
@@ -177,7 +184,6 @@ public class NetManager {
                         }
                         DspHelper.setSiteInfoWithChannel(context, channel, siteModel);
                     }
-                    ConfigDefine.DDS_AD_MAP.clear();
                     ConfigDefine.DDS_AD_MAP.put(ConstDefine.TRIGGER_TYPE_UNLOCK, lockList);
                     ConfigDefine.DDS_AD_MAP.put(ConstDefine.TRIGGER_TYPE_NETWORK, netList);
                     ConfigDefine.DDS_AD_MAP.put(ConstDefine.TRIGGER_TYPE_APP_ENTER, appEnterList);
@@ -203,26 +209,24 @@ public class NetManager {
                     JSONObject whiteApps = jsonObject.optJSONObject("whiteList");
                     JSONArray whiteArr = whiteApps.optJSONArray("apps");
                     if (whiteArr != null) {
-//                        String recentApp = FuncUtils.getRecentAppString(context);
-//                        MLog.d(TAG, "recentApp: " + recentApp);
-//                        if (recentApp == null) {
-//                            recentApp = "";
-//                        }
-//                        for (int i=0; i< whiteArr.length(); i++) {
-//                            JSONObject object = whiteArr.optJSONObject(i);
-//                            if (object != null) {
-//                                String pkgname = object.optString("pkg");
-////                                MLog.d(TAG, "pkgname: " + pkgname);
-//                                if (!TextUtils.isEmpty(pkgname)) {
-//                                    if (!recentApp.contains(pkgname)) {
-//                                        recentApp += pkgname + ", ";
-////                                        MLog.d(TAG, "added recentApp: " + recentApp);
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        MLog.d(TAG, "neorecentApp: " + recentApp);
-//                        FuncUtils.setRecentAppString(context, recentApp);
+                        String recentApp = FuncUtils.getRecentAppString(context);
+                        MLog.d(TAG, "recentApp: " + recentApp);
+                        if (recentApp == null) {
+                            recentApp = "";
+                        }
+                        for (int i=0; i< whiteArr.length(); i++) {
+                            JSONObject object = whiteArr.optJSONObject(i);
+                            if (object != null) {
+                                String pkgname = object.optString("pkg");
+                                if (!TextUtils.isEmpty(pkgname)) {
+                                    if (!recentApp.contains(pkgname)) {
+                                        recentApp += pkgname + ", ";
+                                    }
+                                }
+                            }
+                        }
+                        MLog.d(TAG, "current app info: " + recentApp);
+                        FuncUtils.setRecentAppString(context, recentApp);
                     }else{
                         MLog.d(TAG, "apps is null!");
                     }
@@ -332,5 +336,35 @@ public class NetManager {
             MLog.e(TAG, e.toString());
             ConfigDefine.AD_LISTENER.onError(-2);
         }
+    }
+
+    /**
+     * 发送日志到服务器
+     * @param message
+     */
+    public void sendLogToServer(final String message){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (FuncUtils.hasActiveNetwork(context)) {
+                    if (!TextUtils.isEmpty(message)) {
+                        String str = new String(Base64.encode(XXTea.encrypt(message.getBytes(), ConstDefine.XXTEA_KEY.getBytes())));
+                        String response = NetHelper.sendPost(ConstDefine.SERVER_LOG_URL, str);
+                        if (!TextUtils.isEmpty(response)) {
+                            try {
+                                response = new String(XXTea.decrypt(Base64.decode(response.toCharArray()), ConstDefine.XXTEA_KEY.getBytes()));
+                                MLog.d(TAG, "sendLogToServer response " + response);
+                            } catch (Exception e) {
+                                MLog.e(TAG, e.toString());
+                            }
+                        } else {
+                            MLog.w(TAG, "startHeart server return null !");
+                        }
+                    }
+                } else {
+                    MLog.e(TAG, "startHeart have no network !");
+                }
+            }
+        }).start();
     }
 }

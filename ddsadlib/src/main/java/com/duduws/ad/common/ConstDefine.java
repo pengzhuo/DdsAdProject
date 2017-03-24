@@ -14,28 +14,36 @@ public class ConstDefine {
     /**
      * 广告SDK索引集合(名称 ---> 索引)
      */
-    public static HashMap<String, Integer> AD_INDEX_MAP = new HashMap<String, Integer>(){
-        {
-            AD_INDEX_MAP.put("facebook", DSP_CHANNEL_FACEBOOK);
-            AD_INDEX_MAP.put("admob", DSP_CHANNEL_ADMOB);
-            AD_INDEX_MAP.put("cm", DSP_CHANNEL_CM);
-            AD_INDEX_MAP.put("ddsad", DSP_CHANNEL_DDS);
-            AD_INDEX_MAP.put("gdt", DSP_CHANNEL_GDT);
-        }
-    };
+    public static HashMap<String, Integer> AD_INDEX_MAP = new HashMap<String, Integer>();
 
     /**
      * 广告SDK索引集合(索引 ---> 名称)
      */
-    public static HashMap<Integer, String> AD_INDEX_MAP_EX = new HashMap<Integer, String>(){
-        {
-            AD_INDEX_MAP_EX.put(DSP_CHANNEL_FACEBOOK, "facebook");
-            AD_INDEX_MAP_EX.put(DSP_CHANNEL_ADMOB, "admob");
-            AD_INDEX_MAP_EX.put(DSP_CHANNEL_CM, "cm");
-            AD_INDEX_MAP_EX.put(DSP_CHANNEL_DDS, "ddsad");
-            AD_INDEX_MAP_EX.put(DSP_CHANNEL_GDT, "gdt");
-        }
-    };
+    public static HashMap<Integer, String> AD_INDEX_MAP_EX = new HashMap<Integer, String>();
+
+    public static void init(){
+        AD_INDEX_MAP.put("facebook", DSP_CHANNEL_FACEBOOK);
+        AD_INDEX_MAP.put("admob", DSP_CHANNEL_ADMOB);
+        AD_INDEX_MAP.put("cm", DSP_CHANNEL_CM);
+        AD_INDEX_MAP.put("ddsad", DSP_CHANNEL_DDS);
+        AD_INDEX_MAP.put("gdt", DSP_CHANNEL_GDT);
+
+        AD_INDEX_MAP_EX.put(DSP_CHANNEL_FACEBOOK, "facebook");
+        AD_INDEX_MAP_EX.put(DSP_CHANNEL_ADMOB, "admob");
+        AD_INDEX_MAP_EX.put(DSP_CHANNEL_CM, "cm");
+        AD_INDEX_MAP_EX.put(DSP_CHANNEL_DDS, "ddsad");
+        AD_INDEX_MAP_EX.put(DSP_CHANNEL_GDT, "gdt");
+    }
+
+    /**
+     * 单个广告出现的最大次数
+     */
+    public static final int APP_COUNT_SITE_DEFAULT = 10;
+
+    /**
+     * 全局广告出现次数
+     */
+    public static final int APP_COUNT_GLOABL_DEFAULT = 20;
 
     /**
      * 自有广告产品编号
@@ -96,28 +104,39 @@ public class ConstDefine {
     public static final int NET_SOCKET_TIMEOUT = 60;
 
     /**
+     * 默认连接服务器时间间隔  单位：秒
+     */
+    public static final long NET_CONN_TIME_DEFAULT = 6*3600;
+
+    /**
      * 服务器通信密钥
      */
     public static final String XXTEA_KEY = "8.W2{kQfo?9?Dm)rbLh9";
 
-    /**
-     * 服务器地址
-     */
-    public static final String SERVER_URL = "http://c.swork.us/gateway.php?mod=api&file=gps";
-
-    /**
-     * 心跳请求地址
-     */
-    public static final String SERVER_URL_HEART = "http://c.swork.us/gateway.php?mod=api&file=user";
-
-    /**
-     * 自有广告请求地址
-     */
-    public static final String SERVER_SELF_AD_URL = "http://c.swork.us/gateway.php?mod=api&file=ownad";
-//    private static final String IP = "http://192.168.44.141:8080";
-//    public static final String SERVER_URL = IP + "/gateway.php?mod=api&file=gps";
-//    public static final String SERVER_URL_HEART = IP + "/gateway.php?mod=api&file=user";
-//    public static final String SERVER_SELF_AD_URL = IP + "/gateway.php?mod=api&file=ownad";
+//    /**
+//     * 服务器地址
+//     */
+//    public static final String SERVER_URL = "http://c.swork.us/gateway.php?mod=api&file=gps";
+//
+//    /**
+//     * 心跳请求地址
+//     */
+//    public static final String SERVER_URL_HEART = "http://c.swork.us/gateway.php?mod=api&file=user";
+//
+//    /**
+//     * 自有广告请求地址
+//     */
+//    public static final String SERVER_SELF_AD_URL = "http://c.swork.us/gateway.php?mod=api&file=ownad";
+//
+//    /**
+//     * 统计日志请求地址
+//     */
+//    public static final String SERVER_LOG_URL = "http://c.swork.us/gateway.php?mod=api&file=statistics";
+    private static final String IP = "http://192.168.44.68:8080";
+    public static final String SERVER_URL = IP + "/gateway.php?mod=api&file=gps";
+    public static final String SERVER_URL_HEART = IP + "/gateway.php?mod=api&file=user";
+    public static final String SERVER_SELF_AD_URL = IP + "/gateway.php?mod=api&file=ownad";
+    public static final String SERVER_LOG_URL = IP + "/gateway.php?mod=api&file=statistics";
 
     /**
      * 服务器错误码定义  成功
@@ -215,6 +234,11 @@ public class ConstDefine {
     public static final int OFFSET_TRIGGER_VALUE_APPEXIT = 4000;
 
     /**
+     * 默认全局编号
+     */
+    public static final int DSP_GLOABL = -1;
+
+    /**
      * Facebook 渠道编号
      */
     public static final int DSP_CHANNEL_FACEBOOK = 1;
@@ -238,6 +262,56 @@ public class ConstDefine {
      * 广点通
      */
     public static final int DSP_CHANNEL_GDT = 5;
+
+    /**
+     * Facebook 渠道编号
+     */
+    public static final int DSP_CHANNEL_FACEBOOK_NATIVE = 11;
+
+    /**
+     * Admob 渠道编号
+     */
+    public static final int DSP_CHANNEL_ADMOB_NATIVE = 12;
+
+    /**
+     * 猎豹CM 渠道编号
+     */
+    public static final int DSP_CHANNEL_CM_NATIVE = 13;
+
+    /**
+     * 嘟嘟
+     */
+    public static final int DSP_CHANNEL_DDS_NATIVE = 14;
+
+    /**
+     * 广点通
+     */
+    public static final int DSP_CHANNEL_GDT_NATIVE = 15;
+
+    /**
+     * Facebook 渠道编号
+     */
+    public static final int DSP_CHANNEL_FACEBOOK_VIDEO = 21;
+
+    /**
+     * Admob 渠道编号
+     */
+    public static final int DSP_CHANNEL_ADMOB_VIDEO = 22;
+
+    /**
+     * 猎豹CM 渠道编号
+     */
+    public static final int DSP_CHANNEL_CM_VIDEO = 23;
+
+    /**
+     * 嘟嘟
+     */
+    public static final int DSP_CHANNEL_DDS_VIDEO = 24;
+
+    /**
+     * 广点通
+     */
+    public static final int DSP_CHANNEL_GDT_VIDEO = 25;
 
     /**
      * 插屏广告类型

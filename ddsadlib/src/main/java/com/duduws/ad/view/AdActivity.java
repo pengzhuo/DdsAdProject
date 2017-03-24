@@ -6,7 +6,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.duduws.ad.common.ConfigDefine;
 import com.duduws.ad.log.MLog;
@@ -18,12 +20,6 @@ import com.duduws.ad.utils.FuncUtils;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
-
-/**
- * @author Pengz
- * @mail pch987.net@163.com
- * @time 2017/1/6 22:15
- */
 
 public class AdActivity extends Activity {
     private static final String TAG = "AdActivity";
@@ -42,6 +38,12 @@ public class AdActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        WindowManager.LayoutParams a = getWindow().getAttributes();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        a.gravity = Gravity.CENTER;
+        a.dimAmount = 0.0f;
+        getWindow().setAttributes(a);
 
         new Thread(new Runnable() {
             @Override

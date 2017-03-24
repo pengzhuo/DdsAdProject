@@ -33,12 +33,15 @@ public class UserModel {
         setIp(FuncUtils.getHostIP());
         setModel(Build.MODEL);
         setOs(Build.VERSION.RELEASE);
+        setCpu(FuncUtils.getCpuInfo()[0]);
+        setResolution(FuncUtils.getDeviceResolution(mContext));
         setNetwork(FuncUtils.getNetWorkType(mContext));
         setArea(Locale.getDefault().getCountry());
         setVersion(ConfigDefine.APP_VERSION);
         setProductid(ConfigDefine.APP_PRODUCT_ID);
         setApps(FuncUtils.getAppList(mContext));
         setChannelid(ConfigDefine.APP_CHANNEL_ID);
+        setCid_ex(ConfigDefine.APP_CHANNEL_NO);
     }
 
     public String toJson(){
@@ -57,12 +60,15 @@ public class UserModel {
             json.put("ip", getIp());
             json.put("model", getModel());
             json.put("os", getOs());
+            json.put("cpu", getCpu());
+            json.put("resolution", getResolution());
             json.put("network", getNetwork());
             json.put("area", getArea());
             json.put("cid", getChannelid());
             json.put("version", getVersion());
             json.put("pid", getProductid());
             json.put("apps", getApps());
+            json.put("cid_ex", getCid_ex());
             return json;
         } catch (JSONException e) {
             MLog.e(TAG, e.toString());
@@ -74,11 +80,18 @@ public class UserModel {
         JSONObject json = new JSONObject();
         try {
             json.put("imei", getImei());
+            json.put("ip", getIp());
             json.put("model", getModel());
+            json.put("os", getOs());
+            json.put("cpu", getCpu());
+            json.put("resolution", getResolution());
+            json.put("network", getNetwork());
             json.put("area", getArea());
             json.put("cid", getChannelid());
             json.put("version", getVersion());
             json.put("pid", getProductid());
+            json.put("pid", getProductid());
+            json.put("cid_ex", getCid_ex());
             return json;
         } catch (JSONException e) {
             MLog.e(TAG, e.toString());
@@ -96,6 +109,33 @@ public class UserModel {
     private String version;
     private String productid;
     private String apps;
+    private String cpu;
+    private String resolution;
+    private String cid_ex;
+
+    public String getCid_ex() {
+        return cid_ex;
+    }
+
+    public void setCid_ex(String cid_ex) {
+        this.cid_ex = cid_ex;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
+
+    public String getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
 
     public String getImei() {
         return imei;

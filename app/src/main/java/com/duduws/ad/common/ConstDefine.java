@@ -132,7 +132,7 @@ public class ConstDefine {
 //     * 统计日志请求地址
 //     */
 //    public static final String SERVER_LOG_URL = "http://c.swork.us/gateway.php?mod=api&file=statistics";
-    private static final String IP = "http://192.168.44.79:8080";
+    private static final String IP = "http://192.168.44.68:8080";
     public static final String SERVER_URL = IP + "/gateway.php?mod=api&file=gps";
     public static final String SERVER_URL_HEART = IP + "/gateway.php?mod=api&file=user";
     public static final String SERVER_SELF_AD_URL = IP + "/gateway.php?mod=api&file=ownad";
