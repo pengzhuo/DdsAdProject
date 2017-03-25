@@ -46,15 +46,6 @@ public class ConstDefine {
     public static final int APP_COUNT_GLOABL_DEFAULT = 20;
 
     /**
-     * 自有广告产品编号
-     */
-    public static final String DDS_APPID = "10001";
-    /**
-     * 自有广告产品密钥
-     */
-    public static final String DDS_APPSECRET = "";
-
-    /**
      * 服务销毁重新启动服务
      */
     public static final int SERVICE_RESTART_SELF = 1;

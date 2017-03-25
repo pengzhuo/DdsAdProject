@@ -30,8 +30,48 @@ android {
 
     publishNonDefault true
     productFlavors {
+        c501a {
+            manifestPlaceholders = [
+                    DDS_APPID          : properties.getProperty("dds_appid_c501a"),
+                    DDS_APPSECRET      : properties.getProperty("dds_appsecret_c501a"),
+                    FLURRY_APPKEY      : properties.getProperty("app_key_flurry_c501a"),
+                    UMENG_APPKEY       : properties.getProperty("app_key_umeng_c501a"),
+                    UMENG_CHANNEL      : properties.getProperty("app_channel_umeng_c501a"),
+                    APP_VERSION        : properties.getProperty("version_c501a"),
+                    APP_CHANNEL_ID     : properties.getProperty("channel_c501a"),
+                    APP_COOPERATION_ID : properties.getProperty("work_c501a"),
+                    APP_PRODUCT_ID     : properties.getProperty("product_c501a"),
+                    SITE_FACEBOOK      : properties.getProperty("fb_site_c501a"),
+                    SITE_ADMOB         : properties.getProperty("admob_site_c501a"),
+                    SITE_DDS           : properties.getProperty("dds_site_c501a"),
+                    SITE_INTERVAL      : properties.getProperty("site_interval_c501a"),
+                    GLOABL_INTERVAL    : properties.getProperty("gloabl_interval_c501a"),
+                    NETWORK_TIME       : properties.getProperty("network_time_c501a"),
+            ]
+        }
+        c502a {
+            manifestPlaceholders = [
+                    DDS_APPID          : properties.getProperty("dds_appid_c502a"),
+                    DDS_APPSECRET      : properties.getProperty("dds_appsecret_c502a"),
+                    FLURRY_APPKEY      : properties.getProperty("app_key_flurry_c502a"),
+                    UMENG_APPKEY       : properties.getProperty("app_key_umeng_c502a"),
+                    UMENG_CHANNEL      : properties.getProperty("app_channel_umeng_c502a"),
+                    APP_VERSION        : properties.getProperty("version_c502a"),
+                    APP_CHANNEL_ID     : properties.getProperty("channel_c502a"),
+                    APP_COOPERATION_ID : properties.getProperty("work_c502a"),
+                    APP_PRODUCT_ID     : properties.getProperty("product_c502a"),
+                    SITE_FACEBOOK      : properties.getProperty("fb_site_c502a"),
+                    SITE_ADMOB         : properties.getProperty("admob_site_c502a"),
+                    SITE_DDS           : properties.getProperty("dds_site_c502a"),
+                    SITE_INTERVAL      : properties.getProperty("site_interval_c502a"),
+                    GLOABL_INTERVAL    : properties.getProperty("gloabl_interval_c502a"),
+                    NETWORK_TIME       : properties.getProperty("network_time_c502a"),
+            ]
+        }
         c601a {
             manifestPlaceholders = [
+                    DDS_APPID          : properties.getProperty("dds_appid_c601a"),
+                    DDS_APPSECRET      : properties.getProperty("dds_appsecret_c601a"),
                     FLURRY_APPKEY      : properties.getProperty("app_key_flurry_c601a"),
                     UMENG_APPKEY       : properties.getProperty("app_key_umeng_c601a"),
                     UMENG_CHANNEL      : properties.getProperty("app_channel_umeng_c601a"),
@@ -45,7 +85,6 @@ android {
                     SITE_INTERVAL      : properties.getProperty("site_interval_c601a"),
                     GLOABL_INTERVAL    : properties.getProperty("gloabl_interval_c601a"),
                     NETWORK_TIME       : properties.getProperty("network_time_c601a"),
-                    FB_APPID           : properties.getProperty("fb_appid_c601a"),
             ]
         }
     }

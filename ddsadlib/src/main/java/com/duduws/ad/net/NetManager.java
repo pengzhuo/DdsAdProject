@@ -305,8 +305,8 @@ public class NetManager {
     public void getAdInfoFromServer(int number){
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("appid", ConstDefine.DDS_APPID);
-            jsonObject.put("secret", ConstDefine.DDS_APPSECRET);
+            jsonObject.put("appid", ConfigDefine.DDS_APPID);
+            jsonObject.put("secret", ConfigDefine.DDS_APPSECRET);
             jsonObject.put("num", number);
             String reqStr = new String(Base64.encode(XXTea.encrypt(jsonObject.toString().getBytes(), ConstDefine.XXTEA_KEY.getBytes())));
             String response = NetHelper.sendPost(ConstDefine.SERVER_SELF_AD_URL, reqStr);

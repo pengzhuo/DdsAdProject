@@ -63,6 +63,8 @@ public class DdsManager {
     private static void initConfig(){
         //初始化版本信息
         ConstDefine.init();
+        ConfigDefine.DDS_APPID           = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPID");
+        ConfigDefine.DDS_APPSECRET       = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPSECRET");
         ConfigDefine.APP_KEY_FLURRY      = FuncUtils.getManifestApplicationMetaData(mContext, "FLURRY_APPKEY");
         ConfigDefine.APP_KEY_UMENG       = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_APPKEY");
         ConfigDefine.APP_CHANNEL_UMENG   = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_CHANNEL");

@@ -19,6 +19,16 @@ import java.util.HashMap;
 
 public class ConfigDefine {
     /**
+     * 自有广告产品编号
+     */
+    public static String DDS_APPID = "";
+
+    /**
+     * 自有广告产品密钥
+     */
+    public static String DDS_APPSECRET = "";
+
+    /**
      * 用户信息
      */
     public static UserModel userInfo = null;
