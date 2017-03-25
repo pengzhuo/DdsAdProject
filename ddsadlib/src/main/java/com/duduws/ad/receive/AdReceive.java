@@ -71,7 +71,7 @@ public class AdReceive extends BroadcastReceiver {
             String reason = intent.getStringExtra("reason");
             if (reason.equalsIgnoreCase("homekey")){
                 //短按home键
-//                DspHelper.setCurrentAdsShowFlag(context, false);  //重置广告展示标志
+                DspHelper.setCurrentAdsShowFlag(context, false);  //重置广告展示标志
             }else if (reason.equalsIgnoreCase("recentapps")){
                 //长按home键或者是activity切换键
             }else if (reason.equalsIgnoreCase("lock")){

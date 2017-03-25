@@ -101,7 +101,7 @@ public class ConstDefine {
     /**
      * 超时时间  单位：秒
      */
-    public static final int NET_SOCKET_TIMEOUT = 60;
+    public static final int NET_SOCKET_TIMEOUT = 30;
 
     /**
      * 默认连接服务器时间间隔  单位：秒

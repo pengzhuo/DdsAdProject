@@ -7,13 +7,18 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
 
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 20
         versionCode 1
         versionName "1.0"
 
     }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -22,6 +27,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    publishNonDefault true
     productFlavors {
         c601a {
             manifestPlaceholders = [

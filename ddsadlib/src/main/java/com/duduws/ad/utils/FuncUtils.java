@@ -445,6 +445,10 @@ public class FuncUtils {
      * @return
      */
     public static boolean isSystemApp(Context context, String pkgname) {
+        if (!TextUtils.isEmpty(pkgname)){
+            MLog.w(TAG, "isSystemApp check pkgName is null!");
+            return false;
+        }
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(pkgname, 0);
             // 是系统软件或者是系统软件更新
@@ -457,7 +461,7 @@ public class FuncUtils {
             }
 
         } catch (PackageManager.NameNotFoundException e) {
-            MLog.e(TAG, e.toString());
+            MLog.e(TAG, e.getMessage());
         }
         return false;
     }
