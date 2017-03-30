@@ -139,7 +139,7 @@ public class NetManager {
                     AdsPreferences.getInstance(context).setBoolean(MacroDefine.MACRO_AD_MASK_FLAG, false);
                 }
                 //设置下次联网时间
-                DspHelper.setNextNetConTime(context, System.currentTimeMillis() + ConstDefine.NET_CONN_TIME_DEFAULT*1000);
+                DspHelper.setNextNetConTime(context, System.currentTimeMillis() + ConfigDefine.DEFAULT_CONN_NET_TIME*1000);
                 //设置本地配置信息标志
                 AdsPreferences.getInstance(context).setString(MacroDefine.MACRO_LOCAL_CONFIG_FLAG, "success");
                 //清除本地缓存
@@ -151,6 +151,8 @@ public class NetManager {
                     productModel.initWithJson(productObj.toString());
                     ConfigDefine.productInfo = productModel;
                     DspHelper.setProductInfo(context, ConfigDefine.productInfo);
+                }else{
+                    AdsPreferences.getInstance(context).setBoolean(MacroDefine.MACRO_AD_MASK_FLAG, true);
                 }
                 //解析单个SITE控制参数
                 ConfigDefine.DDS_ARR.clear();

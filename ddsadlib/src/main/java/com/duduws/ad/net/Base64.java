@@ -35,7 +35,7 @@ public class Base64 {
 	/**
 	 * 将base64编码的数据解码成原始数据
 	 */
-	static public byte[] decode(char[] data) {
+	static public byte[] decode(char[] data) throws Exception {
 		int len = ((data.length + 3) / 4) * 3;
 		if (data.length > 0 && data[data.length - 1] == '=')
 			--len;
@@ -58,7 +58,7 @@ public class Base64 {
 			}
 		}
 		if (index != out.length)
-			throw new Error("miscalculated data length!");
+			throw new Exception("miscalculated data length!");
 		return out;
 	}
 

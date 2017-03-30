@@ -19,7 +19,7 @@ public class ProductModel {
     public ProductModel(){
         setWorkid(ConfigDefine.APP_COOPERATION_ID);
         setAppCount(ConstDefine.APP_COUNT_GLOABL_DEFAULT);
-        setAppInterval(ConfigDefine.APP_GLOABL_INTERVAL*1000);
+        setAppInterval(ConfigDefine.APP_GLOABL_INTERVAL);
         setCid(ConfigDefine.APP_CHANNEL_ID);
         setPid(ConfigDefine.APP_PRODUCT_ID);
         setAppEnterFlag(true);
@@ -159,7 +159,7 @@ public class ProductModel {
     }
 
     public void setAppInterval(long appInterval) {
-        this.appInterval = appInterval;
+        this.appInterval = appInterval*1000;
     }
 
     public boolean isStatus() {

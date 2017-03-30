@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.format.DateUtils;
 
 import com.duduws.ad.analytics.DdsLogUtils;
+import com.duduws.ad.common.ConfigDefine;
 import com.duduws.ad.common.ConstDefine;
 import com.duduws.ad.common.MacroDefine;
 import com.duduws.ad.log.MLog;
@@ -160,7 +161,7 @@ public class AdReceive extends BroadcastReceiver {
             Intent intent_heart = new Intent();
             intent_heart.setAction(ConstDefine.ACTION_ALARM_HEART);
             context.sendBroadcast(intent_heart);
-            DspHelper.setNextNetConTime(context, System.currentTimeMillis() + ConstDefine.NET_CONN_TIME_DEFAULT*1000);
+            DspHelper.setNextNetConTime(context, System.currentTimeMillis() + ConfigDefine.DEFAULT_CONN_NET_TIME*1000);
         }
         //发送统计日志
         boolean sendFlag = AdsPreferences.getInstance(context).getBoolean(MacroDefine.MACRO_LOG_SEND_FLAG, true);

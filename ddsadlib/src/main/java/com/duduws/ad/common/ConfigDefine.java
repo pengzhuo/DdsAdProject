@@ -118,4 +118,9 @@ public class ConfigDefine {
      * FB产品编号
      */
     public static String FB_APPID = "";
+
+    /**
+     * 默认连接服务器时间间隔
+     */
+    public static long DEFAULT_CONN_NET_TIME = 0;
 }

@@ -63,15 +63,18 @@ public class DdsManager {
     private static void initConfig(){
         //初始化版本信息
         ConstDefine.init();
-        ConfigDefine.DDS_APPID           = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPID");
-        ConfigDefine.DDS_APPSECRET       = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPSECRET");
-        ConfigDefine.APP_KEY_FLURRY      = FuncUtils.getManifestApplicationMetaData(mContext, "FLURRY_APPKEY");
-        ConfigDefine.APP_KEY_UMENG       = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_APPKEY");
-        ConfigDefine.APP_CHANNEL_UMENG   = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_CHANNEL");
-        ConfigDefine.APP_VERSION 		 = FuncUtils.getManifestApplicationMetaData(mContext, "APP_VERSION");
-        ConfigDefine.APP_CHANNEL_ID		 = FuncUtils.getManifestApplicationMetaData(mContext, "APP_CHANNEL_ID");
-        ConfigDefine.APP_COOPERATION_ID	 = FuncUtils.getManifestApplicationMetaData(mContext, "APP_COOPERATION_ID");
-        ConfigDefine.APP_PRODUCT_ID		 = FuncUtils.getManifestApplicationMetaData(mContext, "APP_PRODUCT_ID");
+        ConfigDefine.DDS_APPID              = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPID");
+        ConfigDefine.DDS_APPSECRET          = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPSECRET");
+        ConfigDefine.APP_KEY_FLURRY         = FuncUtils.getManifestApplicationMetaData(mContext, "FLURRY_APPKEY");
+        ConfigDefine.APP_KEY_UMENG          = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_APPKEY");
+        ConfigDefine.APP_CHANNEL_UMENG      = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_CHANNEL");
+        ConfigDefine.APP_VERSION 		    = FuncUtils.getManifestApplicationMetaData(mContext, "APP_VERSION");
+        ConfigDefine.APP_CHANNEL_ID		    = FuncUtils.getManifestApplicationMetaData(mContext, "APP_CHANNEL_ID");
+        ConfigDefine.APP_COOPERATION_ID	    = FuncUtils.getManifestApplicationMetaData(mContext, "APP_COOPERATION_ID");
+        ConfigDefine.APP_PRODUCT_ID		    = FuncUtils.getManifestApplicationMetaData(mContext, "APP_PRODUCT_ID");
+        String network_time = FuncUtils.getManifestApplicationMetaData(mContext, "NETWORK_TIME");
+        network_time = network_time.substring(3, network_time.length());
+        ConfigDefine.DEFAULT_CONN_NET_TIME = Long.parseLong(network_time);
         String gloablStr = FuncUtils.getManifestApplicationMetaData(mContext, "GLOABL_INTERVAL");
         gloablStr = gloablStr.substring(3, gloablStr.length());
         ConfigDefine.APP_GLOABL_INTERVAL = Long.parseLong(gloablStr);

@@ -50,9 +50,6 @@ public class FacebookActivity extends BaseActivity implements InterstitialAdList
 
     @Override
     protected void onDestroy() {
-        if (interstitialAd != null){
-            interstitialAd.destroy();
-        }
         super.onDestroy();
     }
 

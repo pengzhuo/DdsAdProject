@@ -24,6 +24,12 @@ android {
     }
     //签名
     signingConfigs {
+        cs05 {
+            keyAlias 'cooee'
+            keyPassword 'cooee8888'
+            storeFile file('../keys/c502a')
+            storePassword 'cooee8888'
+        }
         dds {
             keyAlias 'dds_key_alias'
             keyPassword 'dds_key_alias_ad'
@@ -45,6 +51,9 @@ android {
     }
     //渠道
     productFlavors {
+        dds_cs05 {
+            applicationId "com.cooeeui.cometcalendar"
+        }
         dds_c501a {
             applicationId "com.cooeeui.zenlauncher"
         }
@@ -63,14 +72,33 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        cs05_buildType {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.cs05
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         c501a_buildType {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             signingConfig signingConfigs.c501a
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         c502a_buildType {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             signingConfig signingConfigs.c502a
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         c601a_buildType {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             signingConfig null
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     sourceSets {
@@ -107,6 +135,7 @@ repositories {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    dds_cs05Compile project(path: ':ddsadlib', configuration: 'cs05Release')
     dds_c501aCompile project(path: ':ddsadlib', configuration: 'c501aRelease')
     dds_c502aCompile project(path: ':ddsadlib', configuration: 'c502aRelease')
     dds_c601aCompile project(path: ':ddsadlib', configuration: 'c601aRelease')

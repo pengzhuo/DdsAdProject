@@ -461,7 +461,11 @@ public class FuncUtils {
             }
 
         } catch (PackageManager.NameNotFoundException e) {
-            MLog.e(TAG, e.getMessage());
+            StackTraceElement stackTraceElement= e.getStackTrace()[0];
+            MLog.e(TAG, "file: " + stackTraceElement.getFileName() +
+                        "method: " + stackTraceElement.getMethodName() +
+                        "line: " + stackTraceElement.getLineNumber() +
+                        "class: " + stackTraceElement.getClassName());
         }
         return false;
     }

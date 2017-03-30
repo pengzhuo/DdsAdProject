@@ -63,7 +63,8 @@ public class ConstDefine {
     /**
      * 主逻辑服务类完整路径
      */
-    public static final String ACTION_MAIN_SERVICE = "com.duduws.ads.service.AdService";
+    public static final String ACTION_MAIN_SERVICE = "com.duduws.ad.service.AdService";
+
     /**
      * 连接网络ACTION
      */
@@ -104,30 +105,30 @@ public class ConstDefine {
      */
     public static final String XXTEA_KEY = "8.W2{kQfo?9?Dm)rbLh9";
 
-//    /**
-//     * 服务器地址
-//     */
-//    public static final String SERVER_URL = "http://c.swork.us/gateway.php?mod=api&file=gps";
-//
-//    /**
-//     * 心跳请求地址
-//     */
-//    public static final String SERVER_URL_HEART = "http://c.swork.us/gateway.php?mod=api&file=user";
-//
-//    /**
-//     * 自有广告请求地址
-//     */
-//    public static final String SERVER_SELF_AD_URL = "http://c.swork.us/gateway.php?mod=api&file=ownad";
-//
-//    /**
-//     * 统计日志请求地址
-//     */
-//    public static final String SERVER_LOG_URL = "http://c.swork.us/gateway.php?mod=api&file=statistics";
-    private static final String IP = "http://192.168.44.68:8080";
-    public static final String SERVER_URL = IP + "/gateway.php?mod=api&file=gps";
-    public static final String SERVER_URL_HEART = IP + "/gateway.php?mod=api&file=user";
-    public static final String SERVER_SELF_AD_URL = IP + "/gateway.php?mod=api&file=ownad";
-    public static final String SERVER_LOG_URL = IP + "/gateway.php?mod=api&file=statistics";
+    /**
+     * 服务器地址
+     */
+    public static final String SERVER_URL = "http://c.swork.us/gateway.php?mod=api&file=gps";
+
+    /**
+     * 心跳请求地址
+     */
+    public static final String SERVER_URL_HEART = "http://c.swork.us/gateway.php?mod=api&file=user";
+
+    /**
+     * 自有广告请求地址
+     */
+    public static final String SERVER_SELF_AD_URL = "http://c.swork.us/gateway.php?mod=api&file=ownad";
+
+    /**
+     * 统计日志请求地址
+     */
+    public static final String SERVER_LOG_URL = "http://c.swork.us/gateway.php?mod=api&file=statistics";
+//    private static final String IP = "http://192.168.44.111:8080";
+//    public static final String SERVER_URL = IP + "/gateway.php?mod=api&file=gps";
+//    public static final String SERVER_URL_HEART = IP + "/gateway.php?mod=api&file=user";
+//    public static final String SERVER_SELF_AD_URL = IP + "/gateway.php?mod=api&file=ownad";
+//    public static final String SERVER_LOG_URL = IP + "/gateway.php?mod=api&file=statistics";
 
     /**
      * 服务器错误码定义  成功

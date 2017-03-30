@@ -319,8 +319,9 @@ public class DspHelper {
     public static void showAds(Context context, int channel, int triggerType)  {
         int mChannel = channel + getTriggerOffSet(triggerType);
         setDspSpotNextTime(context, ConstDefine.DSP_GLOABL, ConfigDefine.productInfo.getAppInterval());
-        setDspSpotNextTime(context, channel, ConfigDefine.DDS_ARR.get(mChannel).getAppInterval());
+        setDspSpotNextTime(context, mChannel, ConfigDefine.DDS_ARR.get(mChannel).getAppInterval());
         setDspSpotLastTime(context, System.currentTimeMillis());
+        MLog.w(TAG, "showAds channel " + channel + " triggerType " + triggerType);
         openActivity(context, channel, triggerType);
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 
+import com.duduws.ad.common.ConfigDefine;
 import com.duduws.ad.common.ConstDefine;
 import com.duduws.ad.log.MLog;
 import com.duduws.ad.net.NetManager;
@@ -40,7 +41,7 @@ public class AdService extends Service {
         if (nextTime == 0 || curTime >= nextTime){
             NetManager.getInstance(getApplicationContext()).startRequest();
             NetManager.getInstance(getApplicationContext()).startHeart();
-            DspHelper.setNextNetConTime(this, System.currentTimeMillis() + ConstDefine.NET_CONN_TIME_DEFAULT*1000);
+            DspHelper.setNextNetConTime(this, System.currentTimeMillis() + ConfigDefine.DEFAULT_CONN_NET_TIME*1000);
         }
 
         //启动APP打开和关闭的监听

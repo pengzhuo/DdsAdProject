@@ -88,4 +88,9 @@ public class MacroDefine {
      * 统计日志发送标志宏
      */
     public static final String MACRO_LOG_SEND_FLAG = "macro_log_send_flag";
+
+    /**
+     * 默认网络连接时间
+     */
+    public static final String MACRO_DEFAULT_NET_CONN_TIME = "macro_default_net_conn_time";
 }

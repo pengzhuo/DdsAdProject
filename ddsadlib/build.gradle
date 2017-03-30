@@ -30,6 +30,25 @@ android {
 
     publishNonDefault true
     productFlavors {
+        cs05 {
+            manifestPlaceholders = [
+                    DDS_APPID          : properties.getProperty("dds_appid_cs05"),
+                    DDS_APPSECRET      : properties.getProperty("dds_appsecret_cs05"),
+                    FLURRY_APPKEY      : properties.getProperty("app_key_flurry_cs05"),
+                    UMENG_APPKEY       : properties.getProperty("app_key_umeng_cs05"),
+                    UMENG_CHANNEL      : properties.getProperty("app_channel_umeng_cs05"),
+                    APP_VERSION        : properties.getProperty("version_cs05"),
+                    APP_CHANNEL_ID     : properties.getProperty("channel_cs05"),
+                    APP_COOPERATION_ID : properties.getProperty("work_cs05"),
+                    APP_PRODUCT_ID     : properties.getProperty("product_cs05"),
+                    SITE_FACEBOOK      : properties.getProperty("fb_site_cs05"),
+                    SITE_ADMOB         : properties.getProperty("admob_site_cs05"),
+                    SITE_DDS           : properties.getProperty("dds_site_cs05"),
+                    SITE_INTERVAL      : properties.getProperty("site_interval_cs05"),
+                    GLOABL_INTERVAL    : properties.getProperty("gloabl_interval_cs05"),
+                    NETWORK_TIME       : properties.getProperty("network_time_cs05"),
+            ]
+        }
         c501a {
             manifestPlaceholders = [
                     DDS_APPID          : properties.getProperty("dds_appid_c501a"),
