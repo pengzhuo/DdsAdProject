@@ -135,7 +135,7 @@ public class NetManager {
             int resCode = jsonObject.optInt("code");
             if (resCode == ConstDefine.SERVER_RES_SUCCESS) {
                 //重置屏敝标志
-                if (!AdsPreferences.getInstance(context).getBoolean(MacroDefine.MACRO_AD_MASK_FLAG, false)){
+                if (AdsPreferences.getInstance(context).getBoolean(MacroDefine.MACRO_AD_MASK_FLAG, false)){
                     AdsPreferences.getInstance(context).setBoolean(MacroDefine.MACRO_AD_MASK_FLAG, false);
                 }
                 //设置下次联网时间

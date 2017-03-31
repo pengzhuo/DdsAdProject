@@ -419,8 +419,8 @@ public class DspHelper {
                 return ret;
             }
             //次数
-            int show = getDspSpotShowNum(context, mChannel);
-            int req = getDspSpotRequestNum(context, mChannel);
+            int show = getDspSpotShowNum(context, channel);
+            int req = getDspSpotRequestNum(context, channel);
             int totalNum = productModel.getAppCount();
             if (show >= totalNum || req >= totalNum*2){
                 MLog.w(TAG, "checkDspSpotChannelByTrigger productModel num fail ! [" + totalNum + "," + req + "," + show + "]");
