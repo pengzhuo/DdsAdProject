@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My favorite</string>
+    <string name="file_name">Favorite Apps</string>
+    <string name="ad_type_1">下载</string>
+    <string name="ad_type_2">查看详情</string>
+</resources>

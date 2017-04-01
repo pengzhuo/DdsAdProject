@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/DdsAdProject.iml" filepath="$PROJECT_DIR$/DdsAdProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ddsadlib/ddsadlib.iml" filepath="$PROJECT_DIR$/ddsadlib/ddsadlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/selfad/selfad.iml" filepath="$PROJECT_DIR$/selfad/selfad.iml" />
     </modules>
   </component>
 </project>

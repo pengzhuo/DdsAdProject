@@ -1,1 +1,1 @@
-include ':app', ':ddsadlib'
+include ':app', ':ddsadlib', ':selfad'
