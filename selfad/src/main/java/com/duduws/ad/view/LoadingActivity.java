@@ -36,7 +36,7 @@ public class LoadingActivity extends Activity {
         triggerType = intent.getIntExtra("triggerType", -1);
         isOutSide = intent.getBooleanExtra("isOutSide", false);
 
-        if (triggerType == ConstDefine.TRIGGER_TYPE_APP_ENTER){
+        if (channel == ConstDefine.DSP_CHANNEL_DDS || triggerType == ConstDefine.TRIGGER_TYPE_APP_ENTER){
             Message msg = new Message();
             msg.what = 0;
             handler.sendMessage(msg);

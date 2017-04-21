@@ -127,7 +127,7 @@ public class DspHelper {
         } else {
             MLog.w(TAG, "getProductInfo not found !");
         }
-        return null;
+        return new ProductModel();
     }
 
     /**
@@ -385,6 +385,10 @@ public class DspHelper {
         int mChannel = channel + getTriggerOffSet(trigger);
         if (channel == ConstDefine.DSP_GLOABL){
             ProductModel productModel = ConfigDefine.productInfo;
+            if (productModel == null){
+                MLog.w(TAG, "checkDspSpotChannelByTrigger productModel is null !");
+                return ret;
+            }
             //开关
             switch (trigger){
                 case ConstDefine.TRIGGER_TYPE_UNLOCK:

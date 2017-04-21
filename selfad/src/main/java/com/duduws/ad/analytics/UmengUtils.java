@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import com.duduws.ad.log.MLog;
 import com.duduws.ad.utils.FuncUtils;
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class UmengUtils {
     private static final String TAG = "UmengUtils";
 
     public static void init(Context context){
-        MobclickAgent.setDebugMode(true);
+//        MobclickAgent.setDebugMode(true);
     }
 
     public static void onEvent(Context context, String eventId, Map<String, String> map) {
@@ -35,9 +35,9 @@ public class UmengUtils {
                 params = (HashMap<String, String>) map ;
             }
             if (params != null) {
-                MobclickAgent.onEvent(context, eventId, params);
+//                MobclickAgent.onEvent(context, eventId, params);
             } else {
-                MobclickAgent.onEvent(context, eventId);
+//                MobclickAgent.onEvent(context, eventId);
             }
         } catch (Exception e) {
             MLog.e(TAG, e.toString());

@@ -150,10 +150,11 @@ public class NetManager {
                     ProductModel productModel = new ProductModel();
                     productModel.initWithJson(productObj.toString());
                     ConfigDefine.productInfo = productModel;
-                    DspHelper.setProductInfo(context, ConfigDefine.productInfo);
                 }else{
                     AdsPreferences.getInstance(context).setBoolean(MacroDefine.MACRO_AD_MASK_FLAG, true);
+                    ConfigDefine.productInfo = new ProductModel();
                 }
+                DspHelper.setProductInfo(context, ConfigDefine.productInfo);
                 //解析单个SITE控制参数
                 ConfigDefine.DDS_ARR.clear();
                 ConfigDefine.DDS_AD_MAP.clear();

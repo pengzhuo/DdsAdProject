@@ -58,14 +58,6 @@
             android:name="com.duduws.ad.view.ShowDDSActivity"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity
-            android:name="com.duduws.ad.view.FacebookActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity
-            android:name="com.duduws.ad.view.AdmobActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <service
             android:name="com.duduws.ad.service.AdService"
@@ -124,14 +116,14 @@
         <meta-data
             android:name="NETWORK_TIME"
             android:value="${NETWORK_TIME}"/>
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="${UMENG_APPKEY}"
-            />
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL}"
-            />
+        <!--<meta-data-->
+            <!--android:name="UMENG_APPKEY"-->
+            <!--android:value="${UMENG_APPKEY}"-->
+            <!--/>-->
+        <!--<meta-data-->
+            <!--android:name="UMENG_CHANNEL"-->
+            <!--android:value="${UMENG_CHANNEL}"-->
+            <!--/>-->
         <meta-data
             android:name="FLURRY_APPKEY"
             android:value="${FLURRY_APPKEY}"

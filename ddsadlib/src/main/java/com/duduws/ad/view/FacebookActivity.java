@@ -99,4 +99,8 @@ public class FacebookActivity extends BaseActivity implements InterstitialAdList
         AnalyticsUtils.onEvent(this, ConstDefine.DSP_CHANNEL_FACEBOOK, triggerType, ConstDefine.AD_TYPE_SDK_SPOT, ConstDefine.AD_RESULT_CLICK);
         DdsLogUtils.getInstance(this).log(site, ConstDefine.AD_TYPE_SDK_SPOT, ConstDefine.AD_RESULT_CLICK, ConstDefine.DSP_CHANNEL_FACEBOOK);
     }
+
+    public void onLoggingImpression(Ad ad) {
+
+    }
 }

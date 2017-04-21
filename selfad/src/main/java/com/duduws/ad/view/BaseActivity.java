@@ -18,7 +18,7 @@ import com.duduws.ad.model.AdItemList;
 import com.duduws.ad.model.PackageElement;
 import com.duduws.ad.utils.FuncUtils;
 import com.flurry.android.FlurryAgent;
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -88,12 +88,12 @@ public class BaseActivity extends Activity implements OnItemClickListener {
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+//        MobclickAgent.onPause(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+//        MobclickAgent.onResume(this);
     }
 }

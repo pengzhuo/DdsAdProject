@@ -23,7 +23,7 @@ public class AdService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        FuncUtils.startDaemon(getApplicationContext(), ConstDefine.ACTION_MAIN_SERVICE);
+//        FuncUtils.startDaemon(getApplicationContext(), ConstDefine.ACTION_MAIN_SERVICE);
 
         AdReceive adReceive = new AdReceive();
         //监听时钟信息

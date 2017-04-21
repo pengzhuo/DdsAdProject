@@ -18,7 +18,7 @@ public class AnalyticsUtils {
 
     private AnalyticsUtils(Context context){
         mContext = context;
-        UmengUtils.init(context);
+//        UmengUtils.init(context);
         FlurryUtils.init(context);
     }
 
@@ -40,6 +40,7 @@ public class AnalyticsUtils {
     public static void onEvent(Context context, int adType, int triggerId, int posType, int resultType){
         String eventId = String.format(EVENT_ID_FORMAT_EX, adType, triggerId, posType, resultType);
         Map<String, String> map = new HashMap<String, String>();
-        UmengUtils.onEvent(context, eventId, map);
+//        UmengUtils.onEvent(context, eventId, map);
+        FlurryUtils.onEvent(context, eventId, map);
     }
 }

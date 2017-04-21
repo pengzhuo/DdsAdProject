@@ -35,8 +35,8 @@ android {
                     DDS_APPID          : properties.getProperty("dds_appid_c_games1"),
                     DDS_APPSECRET      : properties.getProperty("dds_appsecret_c_games1"),
                     FLURRY_APPKEY      : properties.getProperty("app_key_flurry_c_games1"),
-                    UMENG_APPKEY       : properties.getProperty("app_key_umeng_c_games1"),
-                    UMENG_CHANNEL      : properties.getProperty("app_channel_umeng_c_games1"),
+//                    UMENG_APPKEY       : properties.getProperty("app_key_umeng_c_games1"),
+//                    UMENG_CHANNEL      : properties.getProperty("app_channel_umeng_c_games1"),
                     APP_VERSION        : properties.getProperty("version_c_games1"),
                     APP_CHANNEL_ID     : properties.getProperty("channel_c_games1"),
                     APP_COOPERATION_ID : properties.getProperty("work_c_games1"),
@@ -54,7 +54,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.umeng.analytics:analytics:latest.integration'
+//    compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.jaredrummler:android-processes:1.0.9'
     compile 'com.flurry.android:analytics:6.9.2'
     //noinspection GradleCompatible

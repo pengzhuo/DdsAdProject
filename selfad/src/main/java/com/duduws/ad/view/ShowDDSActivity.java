@@ -36,12 +36,12 @@ public class ShowDDSActivity extends Activity {
             finish();
         }
         Intent intent = getIntent();
-        byte[] bis_bg = intent.getByteArrayExtra("bm_bg");
-        bm_bg = BitmapFactory.decodeByteArray(bis_bg, 0, bis_bg.length);
-        byte[] bis_body = intent.getByteArrayExtra("bm_body");
-        bm_body = BitmapFactory.decodeByteArray(bis_body, 0, bis_body.length);
-        byte[] bis_icon = intent.getByteArrayExtra("bm_icon");
-        bm_icon = BitmapFactory.decodeByteArray(bis_icon, 0, bis_icon.length);
+//        byte[] bis_bg = intent.getByteArrayExtra("bm_bg");
+//        bm_bg = BitmapFactory.decodeByteArray(bis_bg, 0, bis_bg.length);
+//        byte[] bis_body = intent.getByteArrayExtra("bm_body");
+//        bm_body = BitmapFactory.decodeByteArray(bis_body, 0, bis_body.length);
+//        byte[] bis_icon = intent.getByteArrayExtra("bm_icon");
+//        bm_icon = BitmapFactory.decodeByteArray(bis_icon, 0, bis_icon.length);
         title = intent.getStringExtra("title");
         desc = intent.getStringExtra("desc");
         url = intent.getStringExtra("url");

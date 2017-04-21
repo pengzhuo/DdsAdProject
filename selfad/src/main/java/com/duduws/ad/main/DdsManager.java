@@ -66,8 +66,8 @@ public class DdsManager {
         ConfigDefine.DDS_APPID              = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPID");
         ConfigDefine.DDS_APPSECRET          = FuncUtils.getManifestApplicationMetaData(mContext, "DDS_APPSECRET");
         ConfigDefine.APP_KEY_FLURRY         = FuncUtils.getManifestApplicationMetaData(mContext, "FLURRY_APPKEY");
-        ConfigDefine.APP_KEY_UMENG          = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_APPKEY");
-        ConfigDefine.APP_CHANNEL_UMENG      = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_CHANNEL");
+//        ConfigDefine.APP_KEY_UMENG          = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_APPKEY");
+//        ConfigDefine.APP_CHANNEL_UMENG      = FuncUtils.getManifestApplicationMetaData(mContext, "UMENG_CHANNEL");
         ConfigDefine.APP_VERSION 		    = FuncUtils.getManifestApplicationMetaData(mContext, "APP_VERSION");
         ConfigDefine.APP_CHANNEL_ID		    = FuncUtils.getManifestApplicationMetaData(mContext, "APP_CHANNEL_ID");
         ConfigDefine.APP_COOPERATION_ID	    = FuncUtils.getManifestApplicationMetaData(mContext, "APP_COOPERATION_ID");

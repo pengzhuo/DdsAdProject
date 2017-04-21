@@ -128,11 +128,12 @@ public class AdReceive extends BroadcastReceiver {
      * @param context
      */
     public void handleBootCompleted(Context context) {
-        boolean isServiceRunning = FuncUtils.isServiceRunning(context.getApplicationContext(), AdService.class.getName());
-        if (!isServiceRunning){
-            //启动服务
-            FuncUtils.startDaemon(context.getApplicationContext(), ConstDefine.ACTION_MAIN_SERVICE);
-        }
+//        boolean isServiceRunning = FuncUtils.isServiceRunning(context.getApplicationContext(), AdService.class.getName());
+//        if (!isServiceRunning){
+//            //启动服务
+//            FuncUtils.startDaemon(context.getApplicationContext(), ConstDefine.ACTION_MAIN_SERVICE);
+//        }
+        handleRestartService(context, ConstDefine.SERVICE_RESTART_OTHER);
     }
 
     /**
@@ -141,11 +142,11 @@ public class AdReceive extends BroadcastReceiver {
      */
     public void handleTimeTick(Context context) {
         //守护进程
-        boolean isServiceRunning = FuncUtils.isServiceRunning(context.getApplicationContext(), AdService.class.getName());
-        if (!isServiceRunning){
-            //启动服务
-            FuncUtils.startDaemon(context.getApplicationContext(), ConstDefine.ACTION_MAIN_SERVICE);
-        }
+//        boolean isServiceRunning = FuncUtils.isServiceRunning(context.getApplicationContext(), AdService.class.getName());
+//        if (!isServiceRunning){
+//            //启动服务
+//            FuncUtils.startDaemon(context.getApplicationContext(), ConstDefine.ACTION_MAIN_SERVICE);
+//        }
         //Adservice服务
         handleRestartService(context, ConstDefine.SERVICE_RESTART_OTHER);
         //是否需要连接服务器
